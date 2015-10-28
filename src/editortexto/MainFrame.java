@@ -43,12 +43,51 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        rtfEditorKit = new RTFEditorKit();
+        rtfEditorKit = new RTFEditorKit();                      //tipo do texto
         editorPane.setEditorKit(rtfEditorKit);
         this.editorPane.setContentType("text/rtf"); 
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK), "negrito");
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK), "italico");
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK), "sublinhado");
+        
+        //teclas de atalho 
+        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK), "negrito");      //ctrl + n = negrito
+        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK), "italico");      //ctrl + i = italico
+        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK), "sublinhado");   //ctrl + s = sublinhado
+        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK), "alinhadoEsquerda");         //ctrl + l = alinhado à esquerda
+        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK), "centralizado");             //ctrl + e = centralizado
+        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK), "alinhadoDireita");          //ctrl + r = alinhado à direita
+        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.CTRL_MASK), "justificado");              //ctrl + j = justificado
+        
+        
+        
+        //funcoes das teclas de atalho
+        editorPane.getActionMap().put("alinhadoEsquerda", new AbstractAction(){
+            @Override  
+            public void actionPerformed(ActionEvent e) {  
+                AlinharEsquerda.doClick();                          //quando precionada a tecla de atalho simula o click
+            }  
+        });
+        
+        
+        editorPane.getActionMap().put("centralizado", new AbstractAction(){
+            @Override  
+            public void actionPerformed(ActionEvent e) {  
+                Centralizar.doClick();  
+            }  
+        });
+        
+        editorPane.getActionMap().put("alinhadoDireita", new AbstractAction(){
+            @Override  
+            public void actionPerformed(ActionEvent e) {  
+                AlinharDireita.doClick();  
+            }  
+        });
+        
+        editorPane.getActionMap().put("justificado", new AbstractAction(){
+            @Override  
+            public void actionPerformed(ActionEvent e) {  
+                Justificar.doClick();  
+            }  
+        });
+        
         editorPane.getActionMap().put("negrito", new AbstractAction(){
             @Override  
             public void actionPerformed(ActionEvent e) {  
@@ -335,9 +374,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboTamActionPerformed
 
     private void CorFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorFonteActionPerformed
-        cor = JColorChooser.showDialog(null, "selecione uma cor", Color.BLACK);
-        editorPane.setForeground(cor);
-        //new StyledEditorKit.ForegroundAction("CorFonte", cor);
+        cor = JColorChooser.showDialog(null, "selecione uma cor", Color.BLACK);         //abre a paleta de cores para o usuario escolher a cor da fonte
+        new StyledEditorKit.ForegroundAction("CorFonte", cor).actionPerformed(null);        //muda a cor da fonte para a cor escolhida
         
         
     }//GEN-LAST:event_CorFonteActionPerformed
@@ -368,15 +406,24 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_JustificarActionPerformed
 
     private void RecortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecortarActionPerformed
-
+        JEditorPane recortar = editorPane;  
+        Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
+        ClipboardOwner selection = new StringSelection(recortar.getText());
+        board.setContents((Transferable)selection, selection);
+        recortar.cut();  
     }//GEN-LAST:event_RecortarActionPerformed
 
     private void CopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarActionPerformed
-
+        JEditorPane copiar = editorPane;  
+        Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
+        ClipboardOwner selection = new StringSelection(copiar.getText());
+        board.setContents((Transferable)selection, selection);
+        copiar.copy();   
     }//GEN-LAST:event_CopiarActionPerformed
 
     private void ColarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColarActionPerformed
-
+        JEditorPane colar = editorPane;  
+       colar.paste();
     }//GEN-LAST:event_ColarActionPerformed
 
     /**
