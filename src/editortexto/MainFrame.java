@@ -48,9 +48,9 @@ public class MainFrame extends javax.swing.JFrame {
         this.editorPane.setContentType("text/rtf"); 
         
         //teclas de atalho 
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK), "negrito");      //ctrl + n = negrito
+        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_MASK), "negrito");      //ctrl + b = negrito
         editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK), "italico");      //ctrl + i = italico
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK), "sublinhado");   //ctrl + s = sublinhado
+        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK), "sublinhado");   //ctrl + u = sublinhado
         editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK), "alinhadoEsquerda");         //ctrl + l = alinhado à esquerda
         editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK), "centralizado");             //ctrl + e = centralizado
         editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK), "alinhadoDireita");          //ctrl + r = alinhado à direita
@@ -62,7 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
         editorPane.getActionMap().put("alinhadoEsquerda", new AbstractAction(){
             @Override  
             public void actionPerformed(ActionEvent e) {  
-                AlinharEsquerda.doClick();                          //quando precionada a tecla de atalho simula o click
+                AlinharEsquerda.doClick();                          //quando precionada a tecla de atalho simula o click no botao em questao
             }  
         });
         
