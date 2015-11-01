@@ -6,14 +6,9 @@
 package editortexto;
 
 import static com.sun.javafx.fxml.expression.Expression.add;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.JColorChooser;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.event.*;
 
 /**
  *
