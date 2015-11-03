@@ -38,8 +38,8 @@ import javax.swing.text.Document;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-import javax.swing.text.rtf.RTFEditorKit;
 import javax.swing.undo.*;
+import javax.swing.text.html.*;
 
 /**
  *
@@ -76,9 +76,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        rtfEditorKit = new RTFEditorKit();                      //tipo do texto
-        editorPane.setEditorKit(rtfEditorKit);
-        this.editorPane.setContentType("text/rtf");
+        htmlEditorKit = new HTMLEditorKit(); //tipo do texto
+        editorPane.setEditorKit(htmlEditorKit);
+        editorPane.setContentType("text/html");
 
         //teclas de atalho 
         editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_MASK), "negrito");      //ctrl + b = negrito
@@ -559,12 +559,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
-    private RTFEditorKit rtfEditorKit;
+    private HTMLEditorKit htmlEditorKit;
     private Color cor = null;
     private String mem;
-
-    private Color getChooserPanels() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
