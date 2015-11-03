@@ -11,6 +11,7 @@ import javax.swing.event.*;
 import javax.swing.undo.*;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 
 
 /**
@@ -137,5 +138,10 @@ public class Folha extends JEditorPane {
         );
         // Bind em CTRL-Y
         this.getInputMap(2).put(KeyStroke.getKeyStroke("control Y"), "Redo");
+    }
+    
+    
+    public StyleSheet getStyleSheet() {
+        return htmlEditorKit.getStyleSheet();
     }
 }
