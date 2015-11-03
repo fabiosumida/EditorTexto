@@ -5,163 +5,22 @@
  */
 package editortexto;
 
-import java.awt.Color;
-import static java.awt.Color.RED;
+import java.awt.*;
 import javax.swing.text.StyledEditorKit;
-import java.awt.GraphicsEnvironment;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.ClipboardOwner;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import static javafx.scene.paint.Color.color;
-import static javafx.scene.paint.Color.color;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JButton;
-import javax.swing.JColorChooser;
-import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.KeyStroke;
-import javax.swing.SwingConstants;
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.event.UndoableEditListener;
-import javax.swing.text.DefaultEditorKit;
-import javax.swing.text.Document;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
-import javax.swing.undo.*;
-import javax.swing.text.html.*;
+import java.awt.datatransfer.*;
+import javax.swing.*;
 
 /**
  *
  * @author Fabio
  */
-public class MainFrame extends javax.swing.JFrame {
-    
-    /**
-     * variaveis que fazem o Undo e o Redo
-     */
-    private final UndoManager undo = new UndoManager();
-    private Action undoAction = new AbstractAction("Undo") {
-        public void actionPerformed(ActionEvent evt) {
-            try {
-                if (undo.canUndo()) {
-                    undo.undo();
-                }
-            }
-            catch (CannotUndoException e) {}
-        }
-    };
-    private Action redoAction = new AbstractAction("Redo") {
-        public void actionPerformed(ActionEvent evt) {
-            try {
-                if (undo.canRedo()) {
-                    undo.redo();
-                }
-            } catch (CannotRedoException e) {}
-        }
-    };
-    
+public class MainFrame extends JFrame {
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        htmlEditorKit = new HTMLEditorKit(); //tipo do texto
-        editorPane.setEditorKit(htmlEditorKit);
-        editorPane.setContentType("text/html");
-
-        //teclas de atalho 
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_MASK), "negrito");      //ctrl + b = negrito
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK), "italico");      //ctrl + i = italico
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK), "sublinhado");   //ctrl + u = sublinhado
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK), "alinhadoEsquerda");         //ctrl + l = alinhado à esquerda
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK), "centralizado");             //ctrl + e = centralizado
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK), "alinhadoDireita");          //ctrl + r = alinhado à direita
-        editorPane.getInputMap(2).put(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.CTRL_MASK), "justificado");              //ctrl + j = justificado
-
-        //funcoes das teclas de atalho
-        editorPane.getActionMap().put("alinhadoEsquerda", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AlinharEsquerda.doClick();                          //quando precionada a tecla de atalho simula o click no botao em questao
-            }
-        });
-
-        editorPane.getActionMap().put("centralizado", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Centralizar.doClick();
-            }
-        });
-
-        editorPane.getActionMap().put("alinhadoDireita", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AlinhaDireita.doClick();
-            }
-        });
-
-        editorPane.getActionMap().put("justificado", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Justificar.doClick();
-            }
-        });
-
-        editorPane.getActionMap().put("negrito", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ButtonNegrito.doClick();
-            }
-        });
-
-        editorPane.getActionMap().put("italico", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ButtonItalico.doClick();
-            }
-        });
-
-        editorPane.getActionMap().put("italico", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ButtonSublinhado.doClick();
-            }
-        });
-
-        /**
-         * Inserindo as funcionalidades Undo e Redo
-         */
-        Document document = editorPane.getDocument();
-        // adicionando Listener
-        document.addUndoableEditListener(new UndoableEditListener() {
-            public void undoableEditHappened(UndoableEditEvent evt) {
-                undo.addEdit(evt.getEdit());
-            }
-        });
-        // adicionando funcionalidade Undo e CTRL-Z
-        editorPane.getActionMap().put("Undo",
-            undoAction
-        );
-        // Bind em CTRL-Z
-        editorPane.getInputMap().put(KeyStroke.getKeyStroke("control Z"), "Undo");
-        // adicionando funcionalidade Redo e CTRL-Y
-        editorPane.getActionMap().put("Redo",
-            redoAction
-        );
-        // Bind em CTRL-Y
-        editorPane.getInputMap().put(KeyStroke.getKeyStroke("control Y"), "Redo");
-
     }
 
     /**
@@ -193,7 +52,7 @@ public class MainFrame extends javax.swing.JFrame {
         Redo = new javax.swing.JButton();
         centerPanel = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
-        editorPane = new javax.swing.JEditorPane();
+        folha = new Folha(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -387,7 +246,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        scrollPane.setViewportView(editorPane);
+        scrollPane.setViewportView(folha);
 
         javax.swing.GroupLayout centerPanelLayout = new javax.swing.GroupLayout(centerPanel);
         centerPanel.setLayout(centerPanelLayout);
@@ -442,7 +301,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboTamActionPerformed
 
     private void CorFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorFonteActionPerformed
-        cor = JColorChooser.showDialog(null, "selecione uma cor", Color.BLACK);         //abre a paleta de cores para o usuario escolher a cor da fonte
+        Color cor = JColorChooser.showDialog(null, "selecione uma cor", Color.BLACK);         //abre a paleta de cores para o usuario escolher a cor da fonte
         new StyledEditorKit.ForegroundAction("CorFonte", cor).actionPerformed(null);        //muda a cor da fonte para a cor escolhida
     }//GEN-LAST:event_CorFonteActionPerformed
 
@@ -472,7 +331,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_JustificarActionPerformed
 
     private void RecortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecortarActionPerformed
-        JEditorPane recortar = editorPane;
+        JEditorPane recortar = folha;
         Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
         ClipboardOwner selection = new StringSelection(recortar.getText());
         board.setContents((Transferable) selection, selection);
@@ -480,7 +339,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_RecortarActionPerformed
 
     private void CopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarActionPerformed
-        JEditorPane copiar = editorPane;
+        JEditorPane copiar = folha;
         Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
         ClipboardOwner selection = new StringSelection(copiar.getText());
         board.setContents((Transferable) selection, selection);
@@ -488,18 +347,18 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CopiarActionPerformed
 
     private void ColarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColarActionPerformed
-        JEditorPane colar = editorPane;
+        JEditorPane colar = folha;
         colar.paste();
     }//GEN-LAST:event_ColarActionPerformed
 
     private void UndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndoActionPerformed
         // dispara o CTRL-Z
-        undoAction.actionPerformed(null);
+        ((Folha) folha).undoAction.actionPerformed(null);
     }//GEN-LAST:event_UndoActionPerformed
 
     private void RedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedoActionPerformed
         // dispara o CTRL-Y
-        redoAction.actionPerformed(null);
+        ((Folha) folha).redoAction.actionPerformed(null);
     }//GEN-LAST:event_RedoActionPerformed
 
     /**
@@ -538,29 +397,25 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AlinhaDireita;
-    private javax.swing.JButton AlinharEsquerda;
-    private javax.swing.JButton ButtonItalico;
-    private javax.swing.JButton ButtonNegrito;
-    private javax.swing.JButton ButtonSublinhado;
-    private javax.swing.JButton Centralizar;
-    private javax.swing.JButton Colar;
-    private javax.swing.JComboBox ComboFonte;
-    private javax.swing.JComboBox ComboTam;
-    private javax.swing.JButton Copiar;
-    private javax.swing.JButton CorFonte;
-    private javax.swing.JButton Justificar;
-    private javax.swing.JButton Recortar;
-    private javax.swing.JButton Redo;
-    private javax.swing.JButton Undo;
+    javax.swing.JButton AlinhaDireita;
+    javax.swing.JButton AlinharEsquerda;
+    javax.swing.JButton ButtonItalico;
+    javax.swing.JButton ButtonNegrito;
+    javax.swing.JButton ButtonSublinhado;
+    javax.swing.JButton Centralizar;
+    javax.swing.JButton Colar;
+    javax.swing.JComboBox ComboFonte;
+    javax.swing.JComboBox ComboTam;
+    javax.swing.JButton Copiar;
+    javax.swing.JButton CorFonte;
+    javax.swing.JButton Justificar;
+    javax.swing.JButton Recortar;
+    javax.swing.JButton Redo;
+    javax.swing.JButton Undo;
     private javax.swing.JPanel centerPanel;
-    private javax.swing.JEditorPane editorPane;
+    javax.swing.JEditorPane folha;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
-    private HTMLEditorKit htmlEditorKit;
-    private Color cor = null;
-    private String mem;
-
 }
