@@ -5,6 +5,7 @@
  */
 package editortexto;
 
+import editortexto.folha.Folha;
 import java.awt.*;
 import javax.swing.text.StyledEditorKit;
 import java.awt.datatransfer.*;
@@ -50,6 +51,8 @@ public class MainFrame extends JFrame {
         Colar = new javax.swing.JButton();
         Undo = new javax.swing.JButton();
         Redo = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
         centerPanel = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         folha = new Folha(this);
@@ -174,6 +177,20 @@ public class MainFrame extends JFrame {
             }
         });
 
+        jToggleButton1.setText("jToggleButton1");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton2.setText("jToggleButton2");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
@@ -181,17 +198,29 @@ public class MainFrame extends JFrame {
             .addGroup(topPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(topPanelLayout.createSequentialGroup()
-                        .addComponent(ButtonNegrito, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(ButtonItalico, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(ButtonSublinhado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CorFonte)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topPanelLayout.createSequentialGroup()
+                        .addComponent(ComboFonte, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ComboTam, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AlinharEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(AlinhaDireita, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Centralizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Justificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))
+                    .addGroup(topPanelLayout.createSequentialGroup()
                         .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(topPanelLayout.createSequentialGroup()
+                                .addComponent(ButtonNegrito, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(ButtonItalico, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(ButtonSublinhado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CorFonte))
                             .addGroup(topPanelLayout.createSequentialGroup()
                                 .addComponent(Undo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,20 +231,11 @@ public class MainFrame extends JFrame {
                                 .addComponent(Copiar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Colar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(topPanelLayout.createSequentialGroup()
-                                .addComponent(ComboFonte, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ComboTam, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AlinharEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(AlinhaDireita, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Centralizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Justificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65))))
+                                .addGap(45, 45, 45)
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,12 +257,14 @@ public class MainFrame extends JFrame {
                         .addComponent(AlinharEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Justificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Copiar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Colar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Recortar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Undo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Redo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Redo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -252,10 +274,7 @@ public class MainFrame extends JFrame {
         centerPanel.setLayout(centerPanelLayout);
         centerPanelLayout.setHorizontalGroup(
             centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(centerPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(scrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         centerPanelLayout.setVerticalGroup(
             centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,17 +307,40 @@ public class MainFrame extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonNegritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonNegritoActionPerformed
-        new StyledEditorKit.BoldAction().actionPerformed(null);
-    }//GEN-LAST:event_ButtonNegritoActionPerformed
+    private void RedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedoActionPerformed
+        // dispara o CTRL-Y
+        ((Folha) folha).getRedoAction().actionPerformed(null);
+    }//GEN-LAST:event_RedoActionPerformed
 
-    private void ComboFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboFonteActionPerformed
-        new StyledEditorKit.FontFamilyAction("font", ComboFonte.getSelectedItem().toString()).actionPerformed(null);
-    }//GEN-LAST:event_ComboFonteActionPerformed
+    private void UndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndoActionPerformed
+        // dispara o CTRL-Z
+        ((Folha) folha).getUndoAction().actionPerformed(null);
+    }//GEN-LAST:event_UndoActionPerformed
 
-    private void ComboTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboTamActionPerformed
-        new StyledEditorKit.FontSizeAction("size-", Integer.parseInt(ComboTam.getSelectedItem().toString())).actionPerformed(null);
-    }//GEN-LAST:event_ComboTamActionPerformed
+    private void ColarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColarActionPerformed
+        JEditorPane colar = folha;
+        colar.paste();
+    }//GEN-LAST:event_ColarActionPerformed
+
+    private void CopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarActionPerformed
+        JEditorPane copiar = folha;
+        Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
+        ClipboardOwner selection = new StringSelection(copiar.getText());
+        board.setContents((Transferable) selection, selection);
+        copiar.copy();
+    }//GEN-LAST:event_CopiarActionPerformed
+
+    private void RecortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecortarActionPerformed
+        JEditorPane recortar = folha;
+        Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
+        ClipboardOwner selection = new StringSelection(recortar.getText());
+        board.setContents((Transferable) selection, selection);
+        recortar.cut();
+    }//GEN-LAST:event_RecortarActionPerformed
+
+    private void JustificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JustificarActionPerformed
+        new StyledEditorKit.AlignmentAction("Justificado", 3).actionPerformed(null);
+    }//GEN-LAST:event_JustificarActionPerformed
 
     private void CorFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorFonteActionPerformed
         Color cor = JColorChooser.showDialog(null, "selecione uma cor", Color.BLACK);         //abre a paleta de cores para o usuario escolher a cor da fonte
@@ -309,15 +351,6 @@ public class MainFrame extends JFrame {
         new StyledEditorKit.AlignmentAction("Centrazado", 1).actionPerformed(null);
     }//GEN-LAST:event_CentralizarActionPerformed
 
-    private void ButtonItalicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonItalicoActionPerformed
-        new StyledEditorKit.ItalicAction().actionPerformed(null);
-    }//GEN-LAST:event_ButtonItalicoActionPerformed
-
-    private void ButtonSublinhadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSublinhadoActionPerformed
-        new StyledEditorKit.UnderlineAction().actionPerformed(null);
-
-    }//GEN-LAST:event_ButtonSublinhadoActionPerformed
-
     private void AlinharEsquerdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlinharEsquerdaActionPerformed
         new StyledEditorKit.AlignmentAction("AlinhadoEsquerda", 0).actionPerformed(null);
     }//GEN-LAST:event_AlinharEsquerdaActionPerformed
@@ -326,40 +359,43 @@ public class MainFrame extends JFrame {
         new StyledEditorKit.AlignmentAction("AlinhadoDireita", 2).actionPerformed(null);
     }//GEN-LAST:event_AlinhaDireitaActionPerformed
 
-    private void JustificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JustificarActionPerformed
-        new StyledEditorKit.AlignmentAction("Justificado", 3).actionPerformed(null);
-    }//GEN-LAST:event_JustificarActionPerformed
+    private void ComboTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboTamActionPerformed
+        new StyledEditorKit.FontSizeAction("size-", Integer.parseInt(ComboTam.getSelectedItem().toString())).actionPerformed(null);
+    }//GEN-LAST:event_ComboTamActionPerformed
 
-    private void RecortarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecortarActionPerformed
-        JEditorPane recortar = folha;
-        Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
-        ClipboardOwner selection = new StringSelection(recortar.getText());
-        board.setContents((Transferable) selection, selection);
-        recortar.cut();
-    }//GEN-LAST:event_RecortarActionPerformed
+    private void ComboFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboFonteActionPerformed
+        new StyledEditorKit.FontFamilyAction("font", ComboFonte.getSelectedItem().toString()).actionPerformed(null);
+    }//GEN-LAST:event_ComboFonteActionPerformed
 
-    private void CopiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiarActionPerformed
-        JEditorPane copiar = folha;
-        Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();
-        ClipboardOwner selection = new StringSelection(copiar.getText());
-        board.setContents((Transferable) selection, selection);
-        copiar.copy();
-    }//GEN-LAST:event_CopiarActionPerformed
+    private void ButtonSublinhadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSublinhadoActionPerformed
+        new StyledEditorKit.UnderlineAction().actionPerformed(null);
+    }//GEN-LAST:event_ButtonSublinhadoActionPerformed
 
-    private void ColarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColarActionPerformed
-        JEditorPane colar = folha;
-        colar.paste();
-    }//GEN-LAST:event_ColarActionPerformed
+    private void ButtonItalicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonItalicoActionPerformed
+        new StyledEditorKit.ItalicAction().actionPerformed(null);
+    }//GEN-LAST:event_ButtonItalicoActionPerformed
 
-    private void UndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndoActionPerformed
-        // dispara o CTRL-Z
-        ((Folha) folha).undoAction.actionPerformed(null);
-    }//GEN-LAST:event_UndoActionPerformed
+    private void ButtonNegritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonNegritoActionPerformed
+        new StyledEditorKit.BoldAction().actionPerformed(null);
+    }//GEN-LAST:event_ButtonNegritoActionPerformed
 
-    private void RedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RedoActionPerformed
-        // dispara o CTRL-Y
-        ((Folha) folha).redoAction.actionPerformed(null);
-    }//GEN-LAST:event_RedoActionPerformed
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        JToggleButton self = (JToggleButton) evt.getSource();
+        if (self.isSelected()) {
+            Folha.makeList((Folha) folha, editortexto.folha.ListDocument.TYPE_BULLET);
+        } else {
+            Folha.clearList((Folha) folha);
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        JToggleButton self = (JToggleButton) evt.getSource();
+        if (self.isSelected()) {
+            Folha.makeList((Folha) folha, editortexto.folha.ListDocument.TYPE_NUMBERING);
+        } else {
+            Folha.clearList((Folha) folha);
+        }
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,24 +433,26 @@ public class MainFrame extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton AlinhaDireita;
-    javax.swing.JButton AlinharEsquerda;
-    javax.swing.JButton ButtonItalico;
-    javax.swing.JButton ButtonNegrito;
-    javax.swing.JButton ButtonSublinhado;
-    javax.swing.JButton Centralizar;
-    javax.swing.JButton Colar;
-    javax.swing.JComboBox ComboFonte;
-    javax.swing.JComboBox ComboTam;
-    javax.swing.JButton Copiar;
-    javax.swing.JButton CorFonte;
-    javax.swing.JButton Justificar;
-    javax.swing.JButton Recortar;
-    javax.swing.JButton Redo;
-    javax.swing.JButton Undo;
+    public javax.swing.JButton AlinhaDireita;
+    public javax.swing.JButton AlinharEsquerda;
+    public javax.swing.JButton ButtonItalico;
+    public javax.swing.JButton ButtonNegrito;
+    public javax.swing.JButton ButtonSublinhado;
+    public javax.swing.JButton Centralizar;
+    public javax.swing.JButton Colar;
+    public javax.swing.JComboBox ComboFonte;
+    public javax.swing.JComboBox ComboTam;
+    public javax.swing.JButton Copiar;
+    public javax.swing.JButton CorFonte;
+    public javax.swing.JButton Justificar;
+    public javax.swing.JButton Recortar;
+    public javax.swing.JButton Redo;
+    public javax.swing.JButton Undo;
     private javax.swing.JPanel centerPanel;
     javax.swing.JEditorPane folha;
     private javax.swing.JOptionPane jOptionPane1;
+    public javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
