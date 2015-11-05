@@ -115,7 +115,7 @@ public class Folha extends JEditorPane {
                 mainFrame.ButtonItalico.doClick();
             }
         });
-        this.getActionMap().put("italico", new AbstractAction() {
+        this.getActionMap().put("sublinhado", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.ButtonSublinhado.doClick();
