@@ -1,3 +1,9 @@
+/**
+ * Código presente para habilitar os bullets/numerics
+ * Retirado deste site:
+ * http://java-sl.com/bullets_numberings.html
+ */
+
 package editortexto.folha;
 
 import javax.swing.text.*;
