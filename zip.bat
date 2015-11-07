@@ -1,1 +1,2 @@
-7z a LeonardoBastiani_FabioSumida_trab2 build build.xml nbproject Projeto2.dia src
+del LeonardoBastiani_FabioSumida_trab2.zip
+7z a LeonardoBastiani_FabioSumida_trab2.zip build build.xml nbproject Projeto2.dia src
