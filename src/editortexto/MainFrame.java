@@ -9,6 +9,12 @@ import editortexto.folha.Folha;
 import java.awt.*;
 import javax.swing.text.StyledEditorKit;
 import java.awt.datatransfer.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -20,10 +26,32 @@ public class MainFrame extends JFrame {
     /**
      * Creates new form MainFrame
      */
+    ObjectOutputStream output;
+    Socket socket;
+    ObjectInputStream input;
+    
+    private void configuraRede() {
+        try{
+            socket = new Socket("127.0.0.1", 65534);
+            System.out.println("Conectado");
+            
+            output = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("Output conectado");
+            
+            input = new ObjectInputStream(socket.getInputStream());
+            System.out.println("Input Conectado");
+            
+        }catch(IOException e){
+            System.exit(0);
+        }
+    }
+    
+    
     public MainFrame() {
         super("O melhor editor de texto da sala");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         initComponents();
+        configuraRede();
     }
 
     /**
@@ -472,4 +500,6 @@ public class MainFrame extends JFrame {
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JPanel topPanel;
     // End of variables declaration//GEN-END:variables
-}
+
+    }
+
